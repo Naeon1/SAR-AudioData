@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAR-AudioData: Search &amp; Rescue Acoustic Dataset</title>
+<link rel="stylesheet" href="docs/style.css">
+</head>
+<body>
+
+<div class="langbar">
+  <div class="wrap">
+    <a class="active" href="index.html">English</a>
+    <a href="docs/index_zh.html">中文</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="badge">SEARCH &amp; RESCUE · ACOUSTIC DATASET</span>
+    <h1>SAR-AudioData</h1>
+    <p class="sub">A sound event detection dataset for disaster and emergency search-and-rescue scenarios. It focuses on <strong>calls for help</strong> and <strong>knocking sounds</strong> made by trapped people, and provides real <strong>UAV (drone) noise</strong> together with multiple noise-augmented versions, for training and evaluating sound event detection models under heavy noise.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#download">Request the dataset</a>
+      <a class="btn btn-ghost" href="#samples">Listen to samples</a>
+    </div>
+  </div>
+</header>
+
+<!-- Background & purpose -->
+<section>
+  <div class="wrap">
+    <h2>Background</h2>
+    <p class="lead">At disaster sites such as earthquakes and building collapses, trapped people often call out or knock on pipes and walls to signal for help. Airborne search using UAV-mounted acoustic arrays is an efficient approach, but the strong noise from the rotors can severely mask these faint distress signals.</p>
+    <div class="grid">
+      <div class="card">
+        <div class="ico">🆘</div>
+        <h3>Call-for-help detection</h3>
+        <p>Real human distress-voice samples, used to recognize spoken calls for help from trapped people and support life-detection tasks.</p>
+      </div>
+      <div class="card">
+        <div class="ico">🔨</div>
+        <h3>Knocking-sound detection</h3>
+        <p>Rhythmic knocking sounds produced by striking pipes, walls and other hard objects — an important distress cue beyond speech.</p>
+      </div>
+      <div class="card">
+        <div class="ico">🚁</div>
+        <h3>UAV-noise robustness</h3>
+        <p>Real rotor noise under various flight states, plus synthesized noise-augmented samples, used to improve model robustness against noise.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Dataset overview -->
+<section class="alt">
+  <div class="wrap">
+    <h2>Dataset overview</h2>
+    <p class="lead">The dataset contains raw recordings, class-separated training data and multiple augmented versions, all accompanied by event-level JSON time annotations.</p>
+    <div class="stats">
+      <div class="stat"><div class="num">Call for help</div><div class="lbl">687 original · with 3×/6× augmentation</div></div>
+      <div class="stat"><div class="num">Knocking</div><div class="lbl">1259 original · with 3× augmentation</div></div>
+      <div class="stat"><div class="num">UAV noise</div><div class="lbl">Real recordings under various flight states</div></div>
+      <div class="stat"><div class="num">Noise augmentation</div><div class="lbl">Mechanical / wind / white noise + UAV noise</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Samples -->
+<section id="samples">
+  <div class="wrap">
+    <h2>Sample data</h2>
+    <p class="lead">Representative samples of each category are shown below. For calls for help and knocking sounds, both the <strong>original audio</strong> and the corresponding <strong>noise-augmented audio</strong> are provided for side-by-side listening; UAV noise is presented as standalone noise samples.</p>
+    <div id="samples-root"></div>
+  </div>
+</section>
+
+<!-- Annotation format -->
+<section class="alt">
+  <div class="wrap">
+    <h2>Annotation format</h2>
+    <p class="lead">Each audio file has a JSON annotation file of the same name, using event-level time intervals.</p>
+    <table class="fmt">
+      <thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><code>start_time</code></td><td>float</td><td>Event start time (seconds)</td></tr>
+        <tr><td><code>end_time</code></td><td>float</td><td>Event end time (seconds)</td></tr>
+        <tr><td><code>label</code></td><td>string</td><td>Event class (call for help / knocking)</td></tr>
+        <tr><td><code>duration</code></td><td>float</td><td>Event duration (seconds)</td></tr>
+      </tbody>
+    </table>
+    <pre class="code">[
+  {
+    "start_time": 0.691,
+    "end_time": 1.920,
+    "label": "呼救声",
+    "duration": 1.229
+  }
+]</pre>
+    <p class="note">Note: label values in the annotation files are the original Chinese strings <code>呼救声</code> (call for help) and <code>敲击声</code> (knocking).</p>
+  </div>
+</section>
+
+<!-- Download request -->
+<section id="download">
+  <div class="wrap">
+    <div class="download-box">
+      <h2>Request access</h2>
+      <p class="lead" style="margin-bottom:0;">This dataset is for academic research and non-commercial use only. Please fill in the application form to obtain the full dataset; we will review your request and respond as soon as possible.</p>
+      <div class="steps">
+        <div class="step"><div class="n">1</div><strong>Fill in the form</strong><p style="margin:6px 0 0;color:var(--muted);font-size:14px;">Provide your name, affiliation, intended use, etc.</p></div>
+        <div class="step"><div class="n">2</div><strong>Wait for review</strong><p style="margin:6px 0 0;color:var(--muted);font-size:14px;">We will verify the application details.</p></div>
+        <div class="step"><div class="n">3</div><strong>Receive the link</strong><p style="margin:6px 0 0;color:var(--muted);font-size:14px;">Once approved, we will send the download method.</p></div>
+      </div>
+      <a class="btn btn-primary" style="background:var(--accent);color:#fff;" href="https://docs.google.com/forms/d/e/1FAIpQLSc5VrLp1BmhiSrvMD2KyTzKQ0xivBec1mPVJoik5immtQf7vg/viewform?usp=header" target="_blank" rel="noopener">Go to the application form</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>SAR-AudioData · Search &amp; Rescue Acoustic Dataset · For academic research and non-commercial use only</p>
+    <p>For the data construction pipeline and more information, please see the project repository.</p>
+  </div>
+</footer>
+
+<script>
+// Sample configuration: paths are relative to the docs/ directory
+const HELP = [
+  {
+    id: "100-dev-3mimw35g-1751431869252",
+    org: "docs/samples/help/org/100-dev-3mimw35g-1751431869252_呼救声_20250702125159.wav",
+    noise: "docs/samples/help/addNoise/100-dev-3mimw35g-1751431869252_呼救声_20250702125159_悬停1.wav",
+    noiseLabel: "UAV hovering",
+    ann: "start 0.691s · end 1.920s · duration 1.229s"
+  },
+  {
+    id: "183-dev-6lser23x-1751428805766",
+    org: "docs/samples/help/org/183-dev-6lser23x-1751428805766_呼救声_20250702120027.wav",
+    noise: "docs/samples/help/addNoise/183-dev-6lser23x-1751428805766_呼救声_20250702120027_急停1.wav",
+    noiseLabel: "UAV sudden stop",
+    ann: "label: call for help"
+  },
+  {
+    id: "G20092_S0013",
+    org: "docs/samples/help/org/G20092_S0013.wav",
+    noise: "docs/samples/help/addNoise/G20092_S0013_with_悬停1.wav",
+    noiseLabel: "UAV hovering",
+    ann: "label: call for help"
+  }
+];
+
+const KNOCK = [
+  {
+    id: "100-dev-1z0bk58h-1751851523164",
+    org: "docs/samples/knock/org/100-dev-1z0bk58h-1751851523164_敲击声_20250709034257.wav",
+    noise: "docs/samples/knock/addNoise/100-dev-1z0bk58h-1751851523164_敲击声_20250709034257_悬停3.wav",
+    noiseLabel: "UAV hovering",
+    ann: "start 0.431s · end 2.008s · duration 1.577s"
+  },
+  {
+    id: "1000-dev-iyyk0ihe-1751851741072",
+    org: "docs/samples/knock/org/1000-dev-iyyk0ihe-1751851741072_敲击声_20250709034256.wav",
+    noise: "docs/samples/knock/addNoise/1000-dev-iyyk0ihe-1751851741072_敲击声_20250709034256_上下直飞.wav",
+    noiseLabel: "UAV vertical flight",
+    ann: "label: knocking"
+  },
+  {
+    id: "101-dev-1zkjtltj-1751365118209",
+    org: "docs/samples/knock/org/101-dev-1zkjtltj-1751365118209_敲击声_20250701181957.wav",
+    noise: "docs/samples/knock/addNoise/101-dev-1zkjtltj-1751365118209_敲击声_20250701181957_noise2_mono.wav",
+    noiseLabel: "ambient noise (noise2)",
+    ann: "label: knocking"
+  }
+];
+
+const UAV = [
+  { name: "Horizontal flight", src: "docs/samples/uav/左右直飞1.wav" },
+  { name: "Sudden stop",       src: "docs/samples/uav/急停1.wav" },
+  { name: "Hovering",          src: "docs/samples/uav/悬停1.wav" }
+];
+
+function audioEl(src){
+  return '<audio controls preload="none" src="' + encodeURI(src) + '"></audio>';
+}
+
+function pairCards(list){
+  return list.map(function(s){
+    return '' +
+    '<div class="sample-card">' +
+      '<div class="name">' + s.id + '</div>' +
+      '<div class="pair">' +
+        '<div class="track">' +
+          '<div class="thead"><span class="ttitle">Original</span></div>' +
+          audioEl(s.org) +
+        '</div>' +
+        '<div class="track">' +
+          '<div class="thead"><span class="ttitle">Noise-augmented</span><span class="noise-chip">' + s.noiseLabel + '</span></div>' +
+          audioEl(s.noise) +
+        '</div>' +
+      '</div>' +
+      '<div class="ann">Annotation: ' + s.ann + '</div>' +
+    '</div>';
+  }).join('');
+}
+
+function uavCards(list){
+  return '<div class="uav-grid">' + list.map(function(u){
+    return '<div class="uav-item"><div class="name">🚁 ' + u.name + '</div>' + audioEl(u.src) + '</div>';
+  }).join('') + '</div>';
+}
+
+document.getElementById('samples-root').innerHTML = '' +
+  '<div class="sample-group">' +
+    '<div class="sample-group-head"><span class="tag help">Call for help</span><span class="desc">Original human distress voice vs. with UAV noise</span></div>' +
+    pairCards(HELP) +
+  '</div>' +
+  '<div class="sample-group">' +
+    '<div class="sample-group-head"><span class="tag knock">Knocking</span><span class="desc">Original knocking vs. with added noise</span></div>' +
+    pairCards(KNOCK) +
+  '</div>' +
+  '<div class="sample-group">' +
+    '<div class="sample-group-head"><span class="tag uav">UAV noise</span><span class="desc">Real rotor noise under different flight states</span></div>' +
+    uavCards(UAV) +
+  '</div>';
+</script>
+
+</body>
+</html>

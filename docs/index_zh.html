@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAR-AudioData：搜救声学数据集</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="langbar">
+  <div class="wrap">
+    <a href="../index.html">English</a>
+    <a class="active" href="index_zh.html">中文</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="badge">SEARCH &amp; RESCUE · ACOUSTIC DATASET</span>
+    <h1>SAR-AudioData 搜救声学数据集</h1>
+    <p class="sub">面向灾害与应急搜救场景的声音事件检测数据集，聚焦被困人员发出的<strong>呼救声</strong>与<strong>敲击声</strong>，并提供真实<strong>无人机噪声</strong>及多种加噪增强版本，用于在强噪声环境下训练与评估声音事件检测模型。</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#download">申请下载数据集</a>
+      <a class="btn btn-ghost" href="#samples">试听示例数据</a>
+    </div>
+  </div>
+</header>
+
+<!-- 背景与用途 -->
+<section>
+  <div class="wrap">
+    <h2>项目背景</h2>
+    <p class="lead">在地震、建筑坍塌等灾害现场，被困人员往往通过呼喊或敲击管道、墙体来求救。无人机搭载声学阵列进行空中搜救是一种高效手段，但螺旋桨产生的强噪声会严重淹没微弱的求救信号。</p>
+    <div class="grid">
+      <div class="card">
+        <div class="ico">🆘</div>
+        <h3>呼救声检测</h3>
+        <p>采集真实人声呼救样本，用于识别被困者的语音求救信号，支撑生命探测任务。</p>
+      </div>
+      <div class="card">
+        <div class="ico">🔨</div>
+        <h3>敲击声检测</h3>
+        <p>采集敲击管道、墙体等硬物产生的规律性敲击声，作为语音之外的重要求救线索。</p>
+      </div>
+      <div class="card">
+        <div class="ico">🚁</div>
+        <h3>无人机噪声鲁棒性</h3>
+        <p>提供多种飞行状态下的真实螺旋桨噪声，并合成加噪样本，用于提升模型抗噪能力。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 数据概览 -->
+<section class="alt">
+  <div class="wrap">
+    <h2>数据集概览</h2>
+    <p class="lead">数据集包含原始采集音频、按类别分离的训练数据以及多种数据增强版本，全部附带 JSON 事件级时间标注。</p>
+    <div class="stats">
+      <div class="stat"><div class="num">呼救声</div><div class="lbl">原始 687 条 · 含 3×/6× 增强</div></div>
+      <div class="stat"><div class="num">敲击声</div><div class="lbl">原始 1259 条 · 含 3× 增强</div></div>
+      <div class="stat"><div class="num">无人机噪声</div><div class="lbl">多种飞行状态真实录音</div></div>
+      <div class="stat"><div class="num">加噪增强</div><div class="lbl">机械/风噪/白噪 + 无人机噪声</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 示例数据 -->
+<section id="samples">
+  <div class="wrap">
+    <h2>示例数据</h2>
+    <p class="lead">下面展示各类别的代表性样本。呼救声与敲击声同时提供<strong>原始音频</strong>与对应的<strong>加噪音频</strong>以便对比试听，无人机噪声为独立噪声样本。</p>
+    <div id="samples-root"></div>
+  </div>
+</section>
+
+<!-- 标注格式 -->
+<section class="alt">
+  <div class="wrap">
+    <h2>标注格式</h2>
+    <p class="lead">每条音频对应一个同名的 JSON 标注文件，采用事件级时间区间标注。</p>
+    <table class="fmt">
+      <thead><tr><th>字段</th><th>类型</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td><code>start_time</code></td><td>float</td><td>事件开始时间（秒）</td></tr>
+        <tr><td><code>end_time</code></td><td>float</td><td>事件结束时间（秒）</td></tr>
+        <tr><td><code>label</code></td><td>string</td><td>事件类别（呼救声 / 敲击声）</td></tr>
+        <tr><td><code>duration</code></td><td>float</td><td>事件持续时间（秒）</td></tr>
+      </tbody>
+    </table>
+    <pre class="code">[
+  {
+    "start_time": 0.691,
+    "end_time": 1.920,
+    "label": "呼救声",
+    "duration": 1.229
+  }
+]</pre>
+  </div>
+</section>
+
+<!-- 下载申请 -->
+<section id="download">
+  <div class="wrap">
+    <div class="download-box">
+      <h2>申请下载</h2>
+      <p class="lead" style="margin-bottom:0;">本数据集仅供学术研究与非商业用途使用。请通过填写申请表单获取完整数据集，我们会尽快审核并回复。</p>
+      <div class="steps">
+        <div class="step"><div class="n">1</div><strong>填写表单</strong><p style="margin:6px 0 0;color:var(--muted);font-size:14px;">提供姓名、单位、用途等信息。</p></div>
+        <div class="step"><div class="n">2</div><strong>等待审核</strong><p style="margin:6px 0 0;color:var(--muted);font-size:14px;">我们会核实申请信息。</p></div>
+        <div class="step"><div class="n">3</div><strong>获取链接</strong><p style="margin:6px 0 0;color:var(--muted);font-size:14px;">审核通过后发送下载方式。</p></div>
+      </div>
+      <a class="btn btn-primary" style="background:var(--accent);color:#fff;" href="https://docs.google.com/forms/d/e/1FAIpQLSc5VrLp1BmhiSrvMD2KyTzKQ0xivBec1mPVJoik5immtQf7vg/viewform?usp=header" target="_blank" rel="noopener">前往填写申请表单</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>SAR-AudioData · 搜救声学数据集 · 仅供学术研究与非商业用途</p>
+    <p>如需了解数据构建流程与更多信息，请参阅项目仓库。</p>
+  </div>
+</footer>
+
+<script>
+// 样本数据配置：路径相对于 docs/ 目录
+const HELP = [
+  {
+    id: "100-dev-3mimw35g-1751431869252",
+    org: "samples/help/org/100-dev-3mimw35g-1751431869252_呼救声_20250702125159.wav",
+    noise: "samples/help/addNoise/100-dev-3mimw35g-1751431869252_呼救声_20250702125159_悬停1.wav",
+    noiseLabel: "无人机悬停",
+    ann: "起始 0.691s · 结束 1.920s · 时长 1.229s"
+  },
+  {
+    id: "183-dev-6lser23x-1751428805766",
+    org: "samples/help/org/183-dev-6lser23x-1751428805766_呼救声_20250702120027.wav",
+    noise: "samples/help/addNoise/183-dev-6lser23x-1751428805766_呼救声_20250702120027_急停1.wav",
+    noiseLabel: "无人机急停",
+    ann: "标签：呼救声"
+  },
+  {
+    id: "G20092_S0013",
+    org: "samples/help/org/G20092_S0013.wav",
+    noise: "samples/help/addNoise/G20092_S0013_with_悬停1.wav",
+    noiseLabel: "无人机悬停",
+    ann: "标签：呼救声"
+  }
+];
+
+const KNOCK = [
+  {
+    id: "100-dev-1z0bk58h-1751851523164",
+    org: "samples/knock/org/100-dev-1z0bk58h-1751851523164_敲击声_20250709034257.wav",
+    noise: "samples/knock/addNoise/100-dev-1z0bk58h-1751851523164_敲击声_20250709034257_悬停3.wav",
+    noiseLabel: "无人机悬停",
+    ann: "起始 0.431s · 结束 2.008s · 时长 1.577s"
+  },
+  {
+    id: "1000-dev-iyyk0ihe-1751851741072",
+    org: "samples/knock/org/1000-dev-iyyk0ihe-1751851741072_敲击声_20250709034256.wav",
+    noise: "samples/knock/addNoise/1000-dev-iyyk0ihe-1751851741072_敲击声_20250709034256_上下直飞.wav",
+    noiseLabel: "无人机上下直飞",
+    ann: "标签：敲击声"
+  },
+  {
+    id: "101-dev-1zkjtltj-1751365118209",
+    org: "samples/knock/org/101-dev-1zkjtltj-1751365118209_敲击声_20250701181957.wav",
+    noise: "samples/knock/addNoise/101-dev-1zkjtltj-1751365118209_敲击声_20250701181957_noise2_mono.wav",
+    noiseLabel: "环境噪声 noise2",
+    ann: "标签：敲击声"
+  }
+];
+
+const UAV = [
+  { name: "左右直飞", src: "samples/uav/左右直飞1.wav" },
+  { name: "急停",     src: "samples/uav/急停1.wav" },
+  { name: "悬停",     src: "samples/uav/悬停1.wav" }
+];
+
+function audioEl(src){
+  return '<audio controls preload="none" src="' + encodeURI(src) + '"></audio>';
+}
+
+function pairCards(list){
+  return list.map(function(s){
+    return '' +
+    '<div class="sample-card">' +
+      '<div class="name">' + s.id + '</div>' +
+      '<div class="pair">' +
+        '<div class="track">' +
+          '<div class="thead"><span class="ttitle">原始音频</span></div>' +
+          audioEl(s.org) +
+        '</div>' +
+        '<div class="track">' +
+          '<div class="thead"><span class="ttitle">加噪音频</span><span class="noise-chip">' + s.noiseLabel + '</span></div>' +
+          audioEl(s.noise) +
+        '</div>' +
+      '</div>' +
+      '<div class="ann">标注：' + s.ann + '</div>' +
+    '</div>';
+  }).join('');
+}
+
+function uavCards(list){
+  return '<div class="uav-grid">' + list.map(function(u){
+    return '<div class="uav-item"><div class="name">🚁 ' + u.name + '</div>' + audioEl(u.src) + '</div>';
+  }).join('') + '</div>';
+}
+
+document.getElementById('samples-root').innerHTML = '' +
+  '<div class="sample-group">' +
+    '<div class="sample-group-head"><span class="tag help">呼救声</span><span class="desc">原始人声呼救 vs 叠加无人机噪声</span></div>' +
+    pairCards(HELP) +
+  '</div>' +
+  '<div class="sample-group">' +
+    '<div class="sample-group-head"><span class="tag knock">敲击声</span><span class="desc">原始敲击 vs 叠加噪声</span></div>' +
+    pairCards(KNOCK) +
+  '</div>' +
+  '<div class="sample-group">' +
+    '<div class="sample-group-head"><span class="tag uav">无人机噪声</span><span class="desc">不同飞行状态下的真实螺旋桨噪声</span></div>' +
+    uavCards(UAV) +
+  '</div>';
+</script>
+
+</body>
+</html>
